@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>$Rudy Christmas Flight Plan</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                'rudy-red': '#D62828',
+                'rudy-green': '#006D4D',
+                'rudy-gold': '#FFD700',
+                'rudy-dark': '#1C1C1C',
+            },
+            fontFamily: {
+                inter: ['Inter', 'sans-serif'],
+            }
+        }
+    }
+}
+</script>
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #EAEAEA;
+    background: radial-gradient(circle at top, #0a0a2a 0%, #00001a 100%);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 🌙 Moon */
+body::before {
+    content: '';
+    position: fixed;
+    top: 5%;
+    right: 10%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #fdfbd3 0%, #f2eecb 70%, transparent 100%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* 🌨️ Realistic Falling Snow with Twinkle */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 10;
+    animation: fall linear infinite, sway ease-in-out infinite, twinkle 2s infinite alternate;
+}
+
+.snowflake.medium {
+    width: 4px;
+    height: 4px;
+    opacity: 0.9;
+}
+
+/* Horizontal sway */
+@keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
+}
+
+/* Falling down */
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(110vh); }
+}
+
+/* Twinkle effect */
+@keyframes twinkle {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Roadmap Layout */
+.roadmap-container { display: grid; grid-template-columns: 1fr; gap: 2rem; position: relative; z-index: 5; }
+@media (min-width: 768px) { .roadmap-container { grid-template-columns: 1fr 3fr; } }
+
+.phase-title {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    font-weight: 700;
+    color: #1C1C1C;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+    z-index: 5;
+}
+.phase-title:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.6); }
+
+.phase-content {
+    position: relative;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    z-index: 5;
+}
+@media (min-width: 768px) {
+    .phase-content::before {
+        content: '';
+        position: absolute;
+        left: -32px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 3px;
+        background-color: #D62828;
+    }
+    .phase-content::after {
+        content: '';
+        position: absolute;
+        left: -32px;
+        top: 50%;
+        transform: translate(-100%, -50%);
+        width: 12px;
+        height: 12px;
+        background-color: #FFD700;
+        border: 3px solid #D62828;
+        border-radius: 50%;
+        z-index: 20;
+    }
+}
+
+/* Footer Centered */
+.rudy-footer {
+    margin-top: 4rem;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body class="min-h-screen p-4 sm:p-8">
+
+<!-- Generate continuous snowflakes -->
+<script>
+const snowflakeCount = 100;
+
+for (let i = 0; i < snowflakeCount; i++) {
+    const snow = document.createElement('div');
+    snow.classList.add('snowflake');
+    if (Math.random() > 0.7) snow.classList.add('medium');
+    snow.style.left = Math.random() * 100 + 'vw';
+    const fallDuration = 15 + Math.random() * 20;
+    const swayDuration = 3 + Math.random() * 5;
+    snow.style.animationDuration = `${fallDuration}s, ${swayDuration}s, 2s`;
+    snow.style.animationDelay = `${Math.random() * 20}s, ${Math.random() * 5}s, ${Math.random() * 2}s`;
+    document.body.appendChild(snow);
+}
+</script>
+
+<div class="max-w-6xl mx-auto py-10 relative z-10">
+
+<header class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-rudy-gold mb-3 flex items-center justify-center">
+            <span class="mr-3" aria-hidden="true">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" fill="#8B4513"/>
+                    <path d="M12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4Z" fill="#D2B48C"/>
+                    <circle cx="12" cy="12" r="8" fill="#D2B48C"/>
+                    <circle cx="12" cy="12" r="6" fill="#8B4513"/>
+                    <circle cx="12" cy="12" r="4" fill="#D2B48C"/>
+                    <circle cx="12" cy="12" r="2" fill="#D62828"/>
+                    <path d="M12 2.5L12 1.5M15 4L16 3M9 4L8 3" stroke="#D62828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            THE $RUDY CHRISTMAS FLIGHT PLAN 🦌
+        </h1>
+        <p class="text-xl text-rudy-white font-semibold">
+            5 Phases of Holiday Gains — From Takeoff to the North Pole.
+        </p>
+    </header>
+
+    <!-- Roadmap Grid -->
+    <div class="space-y-12">
+           <!-- Roadmap Grid -->
+    <div class="space-y-12">
+        
+        <!-- Roadmap Grid Start -->
+        <div class="space-y-12">
+
+            <!-- PHASE 1 -->
+            <div class="roadmap-container items-center">
+                <div class="phase-title bg-rudy-gold text-rudy-dark">
+                    <p class="text-2xl mt-1 font-extrabold">PHASE 1 | Sleigh Prep 🛷</p>
+                    <p class="text-sm">Q4 2025</p>
+                </div>
+                <div class="phase-content">
+                    <h4 class="text-xl font-bold text-rudy-red mb-3">Launch & Liquidity Lock</h4>
+                    <ul class="space-y-2 list-disc pl-5 text-rudy-dark">
+                        <li>$Rudy Stealth Launch: Fair launch on Pump.fun and DEX.</li>
+                        <li>Liquidity (LP) <strong>Burned</strong> and Contract <strong>Renounced</strong> (0% Tax).</li>
+                        <li>Initial Community Building (Telegram, X, Facebook, Tiktok, Discord).</li>
+                        <li>Application for major crypto tracking sites (CG & CMC).</li>
+                        <li>Goal: Achieve <strong>1,000+ Unique Holders</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PHASE 2 -->
+            <div class="roadmap-container items-center">
+                <div class="phase-title bg-rudy-red text-white">
+                    <p class="text-2xl mt-1 font-extrabold">PHASE 2 | Fill The Stockings 🎁</p>
+                    <p class="text-sm">Q1 2026</p>
+                </div>
+                <div class="phase-content">
+                    <h4 class="text-xl font-bold text-rudy-red mb-3">Gaining Market Altitude</h4>
+                    <ul class="space-y-2 list-disc pl-5 text-rudy-dark">
+                        <li>Strategic Influencer Marketing Push & AMAs.</li>
+                        <li>Launch Official <strong>$Rudy Merch Store</strong> (Apparel & Swag).</li>
+                        <li>First Community Airdrop/Giveaway Events.</li>
+                        <li>Development of <strong>$Rudy Staking utility roadmap</strong>.</li>
+                        <li>Goal: Achieve <strong>5,000+ Holders</strong> and <strong>$10M Market Cap</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PHASE 3 -->
+            <div class="roadmap-container items-center">
+                <div class="phase-title bg-rudy-gold text-rudy-dark">
+                    <p class="text-2xl mt-1 font-extrabold">PHASE 3 | The Gift Drop 📦</p>
+                    <p class="text-sm">Q2 2026</p>
+                </div>
+                <div class="phase-content">
+                    <h4 class="text-xl font-bold text-rudy-red mb-3">Staking & Exchange Listings</h4>
+                    <ul class="space-y-2 list-disc pl-5 text-rudy-dark">
+                        <li>Listing on first <strong>Tier 2 Centralized Exchange (CEX)</strong>.</li>
+                        <li>Deployment of <strong>$Rudy Staking Pool</strong> (Reward distribution).</li>
+                        <li>Community Contests and Leaderboard Challenges.</li>
+                        <li>Establishment of Strategic Solana Ecosystem Partnerships.</li>
+                        <li>Goal: Integrate staking successfully; secure first CEX listing.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PHASE 4 -->
+            <div class="roadmap-container items-center">
+                <div class="phase-title bg-rudy-red text-white">
+                    <p class="text-2xl mt-1 font-extrabold">PHASE 4 | North Pole Ascent 🏔️</p>
+                    <p class="text-sm">Q3 2026</p>
+                </div>
+                <div class="phase-content">
+                    <h4 class="text-xl font-bold text-rudy-red mb-3">DAO & Global Reach</h4>
+                    <ul class="space-y-2 list-disc pl-5 text-rudy-dark">
+                        <li>Formal <strong>$Rudy DAO Governance</strong> Launch (Community voting on treasury).</li>
+                        <li>Launch of second <strong>Tier 2 CEX</strong> and sustained marketing.</li>
+                        <li>Exploration and preparation for <strong>Tier 1 CEX</strong> applications.</li>
+                        <li>Charity Initiative: Donate to a community-voted children's foundation.</li>
+                        <li>Goal: Establish <strong>active DAO</strong>; <strong>$50M Market Cap</strong> target.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- PHASE 5 -->
+            <div class="roadmap-container items-center">
+                <div class="phase-title bg-rudy-gold text-rudy-dark">
+                    <p class="text-2xl mt-1 font-extrabold">PHASE 5 | Forever Festive 🌟</p>
+                    <p class="text-sm">Q4 2026 & Beyond</p>
+                </div>
+                <div class="phase-content">
+                    <h4 class="text-xl font-bold text-rudy-red mb-3">Continuous Innovation & Ecosystem</h4>
+                    <ul class="space-y-2 list-disc pl-5 text-rudy-dark">
+                        <li><strong>Tier 1 CEX Listing Secured</strong> (e.g., KuCoin, Bybit, etc.).</li>
+                        <li>Expansion into new markets and linguistic communities.</li>
+                        <li>Launch of <strong>$Rudy Ecosystem V2</strong> (Burn mechanisms, new utilities).</li>
+                        <li>Ongoing community events and growth campaigns.</li>
+                        <li>Goal: Global Recognition; <strong>$100M+ Market Cap</strong> and beyond.</li>
+                    </ul>
+                </div>
+           </div>
+
+        </div> <!-- End Roadmap Grid -->
+
+  <!-- Festive Footer (new color + style) --> <footer class="rudy-footer"> <p class="text-xl font-semibold text-white-900 uppercase tracking-wider"> 🎄🦌 Let’s all melt the charts and send $Rudy to the moon. 🌕🚀 </p> </footer> </div> </body> </html>
